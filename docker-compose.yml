@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+    # Servidor PHP do Laravel
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: tcc_app
+        volumes:
+            - .:/var/www/html
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        networks:
+            - tcc_network
+
+    # Servidor do Vue.js (Vite) - Roda automaticamente
+    node:
+        image: node:20-alpine
+        container_name: tcc_node
+        working_dir: /var/www/html
+        volumes:
+            - .:/var/www/html
+        ports:
+            - "5173:5173"
+        environment:
+            - NODE_ENV=development
+        depends_on:
+            - app
+        # Comando para rodar o Vite expondo o HMR para o host do Ubuntu
+        command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+        networks:
+            - tcc_network
+
+    # Banco de Dados PostgreSQL
+    db:
+        image: postgres:15-alpine
+        container_name: tcc_db
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: tcc_project
+            POSTGRES_USER: tcc_user
+            POSTGRES_PASSWORD: tcc_password
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        networks:
+            - tcc_network
+
+networks:
+    tcc_network:
+        driver: bridge
+
+volumes:
+    pgdata:
+        driver: local
