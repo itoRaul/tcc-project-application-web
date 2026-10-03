@@ -56,11 +56,13 @@
 </template>
 
 <script setup>
+import { router } from '@inertiajs/vue3'
+
 const isActive = (path) => {
   return window.location.pathname === path;
 }
 
 const logout = () => {
-
+  router.post('/logout');
 }
 </script>

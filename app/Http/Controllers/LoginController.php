@@ -31,4 +31,14 @@ class LoginController extends Controller
             'login' => 'Suas credenciais são inválidas.'
         ]);
     }
+
+    public function destroy(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
 }
