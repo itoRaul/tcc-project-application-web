@@ -35,4 +35,9 @@ class Device extends Model
             'longitude' => 'float',
         ];
     }
+
+    public function readings()
+    {
+        return $this->hasMany(Reading::class);
+    }
 }

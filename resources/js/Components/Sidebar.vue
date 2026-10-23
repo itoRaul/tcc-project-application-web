@@ -32,6 +32,17 @@
       </a>
 
       <a 
+        href="/leituras"
+        class="flex items-center px-4 py-3 rounded-xl transition-all duration-300 group hover:bg-white/10"
+        :class="{'bg-white/15 shadow-lg border border-white/10': isActive('/leituras')}"
+      >
+        <svg class="w-5 h-5 mr-3 text-teal-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+        </svg>
+        <span class="font-medium text-stone-200 group-hover:text-white transition-colors">Leituras</span>
+      </a>
+
+      <a 
         href="#"
         class="flex items-center px-4 py-3 rounded-xl transition-all duration-300 group hover:bg-white/10"
       >
