@@ -15,11 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        
+        User::updateOrCreate(
+            ['login' => 'admin'],
+            [
+                'name' => 'Administrator',
+                'password' => 'adm1234'
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            DeviceSeeder::class,
         ]);
     }
 }
